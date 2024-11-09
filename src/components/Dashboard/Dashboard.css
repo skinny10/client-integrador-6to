@@ -1,0 +1,44 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    
+}
+.dashboard-container {
+    
+    background-color: #171821; 
+    display: flex;
+    height: 100vh; 
+}
+
+.content-main-menu {
+    width: 200px;
+    height: 100vh;
+    background-color: #1e1e2d;
+}
+
+.main-content {
+    margin-left: 40px; 
+    padding: 20px;
+    width: calc(100% - 80px);
+    background-color: #171821;
+    overflow-y: auto;
+}
+
+.content-temp{
+    display: flex;
+}
+
+.gauge-content{
+    margin-top: 30px;
+    display: flex;
+    margin-left: 200px;
+}
+
+.titulo{
+    text-align: center;
+    font-size: 30px;
+}

@@ -1,0 +1,17 @@
+
+
+.content-main-card{
+    display: flex;
+    margin-left: 20px;
+    width: 300px;
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #0B1739; 
+    border-radius: 10px; 
+    color: #ffffff; 
+}
+
+.temp {
+font-size: 40px;
+margin: 10px;
+}
