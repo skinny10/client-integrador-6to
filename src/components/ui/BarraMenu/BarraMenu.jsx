@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import logo from "../../../assets/logotipo.png";
 import {
   HiMap,
@@ -10,10 +11,18 @@ import {
 import "./BarraMenu.css";
 
 export default function BarraMenu() {
-  const [active, setActive] = useState("home");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [active, setActive] = useState(location.pathname);
 
-  const handleClick = (item) => {
-    setActive(item);
+  useEffect(() => {
+    // Actualiza el estado activo cuando cambia la ubicación
+    setActive(location.pathname);
+  }, [location.pathname]);
+
+  const handleClick = (path) => {
+    setActive(path);
+    navigate(path);
   };
 
   return (
@@ -22,29 +31,29 @@ export default function BarraMenu() {
 
       <div className="option-menu">
         <div
-          className={`menu-item ${active === "home" ? "active" : ""}`}
-          onClick={() => handleClick("home")}
+          className={`menu-item ${active === "/" ? "active" : ""}`}
+          onClick={() => handleClick("/")}
         >
           <HiMap size={30} className="icon" />
         </div>
 
         <div
-          className={`menu-item ${active === "grafica1" ? "active" : ""}`}
-          onClick={() => handleClick("grafica1")}
+          className={`menu-item ${active === "/grafica1" ? "active" : ""}`}
+          onClick={() => handleClick("/grafica1")}
         >
           <HiOutlineChartBar size={30} className="icon" />
         </div>
 
         <div
-          className={`menu-item ${active === "grafica2" ? "active" : ""}`}
-          onClick={() => handleClick("grafica2")}
+          className={`menu-item ${active === "/grafica2" ? "active" : ""}`}
+          onClick={() => handleClick("/grafica2")}
         >
           <HiOutlineChartSquareBar size={30} className="icon" />
         </div>
 
         <div
-          className={`menu-item ${active === "exit" ? "active" : ""}`}
-          onClick={() => handleClick("exit")}
+          className={`menu-item ${active === "/exit" ? "active" : ""}`}
+          onClick={() => handleClick("/exit")}
         >
           <HiOutlineLogout size={30} className="exit" />
         </div>

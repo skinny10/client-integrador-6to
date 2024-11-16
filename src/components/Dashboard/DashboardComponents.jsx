@@ -19,12 +19,16 @@ export default function Dashboard() {
     };
 
     ws.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      console.log("Datos recibidos desde WebSocket:", data);
+      try {
+        const data = JSON.parse(event.data);
+        console.log("Datos recibidos desde WebSocket:", data);
 
-      // Actualizar estados de temperatura y humedad
-      if (data.temperature !== undefined) setTemperature(data.temperature);
-      if (data.humidity !== undefined) setHumidity(data.humidity);
+        // Actualizar estados de temperatura y humedad
+        if (data.temperatura !== undefined) setTemperature(data.temperatura);
+        if (data.humedad !== undefined) setHumidity(data.humedad);
+      } catch (error) {
+        console.error("Error al analizar los datos del WebSocket:", error);
+      }
     };
 
     ws.onerror = (error) => {
@@ -38,7 +42,7 @@ export default function Dashboard() {
     // Cerrar conexión al desmontar el componente
     return () => ws.close();
   }, []);
-  console.log("Datos recibidos en el front-end:", { temperature, humidity });
+
   return (
     <div className="dashboard-container">
       <BarraMenu />
@@ -58,7 +62,7 @@ export default function Dashboard() {
 
         <div className="gauge-content">
           <div>
-            <h1 className="titulo"> Temperatura Interna</h1>
+            <h1 className="titulo">Temperatura Interna</h1>
             <GaugeChart value={temperature} />
           </div>
           <div>
