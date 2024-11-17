@@ -2,7 +2,7 @@
 
 .content-main-card{
     display: flex;
-    margin-left: 20px;
+    margin-left: 10px;
     width: 300px;
     margin-top: 40px;
     padding: 20px;
@@ -12,6 +12,6 @@
 }
 
 .temp {
-font-size: 40px;
+font-size: 30px;
 margin: 10px;
 }

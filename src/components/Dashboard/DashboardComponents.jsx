@@ -3,12 +3,13 @@ import Header from "../ui/Header/Header";
 import BarraMenu from "../ui/BarraMenu/BarraMenu";
 import CardStats from "../ui/CardStats/CardStats";
 import GaugeChart from "../ui/TemperatureGaugeChart/GaugeChart";
+import Alerts from "../ui/Alerts/Alerts";
 import "./Dashboard.css";
 
 export default function Dashboard() {
   // Estados para la temperatura y la humedad
   const [temperature, setTemperature] = useState(null);
-  const [humidity, setHumidity] = useState(null);
+  const [temperature2, setTemperature2] = useState(null);
 
   useEffect(() => {
     // Conectar al WebSocket del backend
@@ -23,9 +24,9 @@ export default function Dashboard() {
         const data = JSON.parse(event.data);
         console.log("Datos recibidos desde WebSocket:", data);
 
-        // Actualizar estados de temperatura y humedad
+        // Actualizar estados de temperatura y Temperature2
         if (data.temperatura !== undefined) setTemperature(data.temperatura);
-        if (data.humedad !== undefined) setHumidity(data.humedad);
+        if (data.temperatura2 !== undefined) setTemperature2(data.temperatura2);
       } catch (error) {
         console.error("Error al analizar los datos del WebSocket:", error);
       }
@@ -57,17 +58,26 @@ export default function Dashboard() {
             title="Temperatura interna"
             valor={`${temperature ?? "N/A"}°`}
           />
-          <CardStats title="Humedad interna" valor={`${humidity ?? "N/A"}%`} />
+          <CardStats
+            title="Temperatura Externa"
+            valor={`${temperature2 ?? "N/A"}°`}
+          />
         </div>
 
-        <div className="gauge-content">
-          <div>
-            <h1 className="titulo">Temperatura Interna</h1>
-            <GaugeChart value={temperature} />
+        <div className="contentenedor-abajo">
+          <div className="text-cyan-50">
+            <h1>Alertas</h1>
+            <Alerts alerta="Senooooor" />
           </div>
-          <div>
-            <h1 className="titulo">Humedad Interna</h1>
-            <GaugeChart value={humidity} />
+          <div className="gauge-content">
+            <div>
+              <h1 className="titulo">Temperatura Interna</h1>
+              <GaugeChart value={temperature} />
+            </div>
+            <div>
+              <h1 className="titulo">Temperatura Externa</h1>
+              <GaugeChart value={temperature2} />
+            </div>
           </div>
         </div>
       </div>

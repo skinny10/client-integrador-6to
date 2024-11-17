@@ -8,7 +8,6 @@ body {
     
 }
 .dashboard-container {
-    
     background-color: #171821; 
     display: flex;
     height: 100vh; 
@@ -28,6 +27,11 @@ body {
     overflow-y: auto;
 }
 
+.contentenedor-abajo {
+display: flex;
+margin-left: 20px;
+}
+
 .content-temp{
     display: flex;
 }
@@ -35,10 +39,11 @@ body {
 .gauge-content{
     margin-top: 30px;
     display: flex;
-    margin-left: 200px;
+  margin-left: 60px;
 }
 
 .titulo{
     text-align: center;
     font-size: 30px;
+    color: aliceblue;
 }
